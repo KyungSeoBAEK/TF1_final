@@ -17,6 +17,11 @@ String sessionId = (String) session.getAttribute("sessionId");
 						<li class="nav-item"><a class="nav-link"
 							href='<c:url value="/member/addMember.jsp"/>'>회원 가입</a></li>
 					</c:when>
+					<c:when test="${sessionId eq 'admin' }">
+					<li style="padding-top: 7px; color: white">[관리자님]
+					<li class="nav-item"><a class="nav-link"
+							href="<c:url value="/member/logoutMember.jsp"/>">로그아웃 </a></li>
+					</c:when>
 					<c:otherwise>
 						<li style="padding-top: 7px; color: white">[<%=sessionId%>님]
 						</li>
