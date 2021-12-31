@@ -3,8 +3,15 @@
 <html>
 <head>
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	function checkForm() {
+		
+		var checkId = /^[a-z0-9]{6,20}$/;
+		var checkPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%&^*=*+=-])(?=.*[0-9]).{6,20}$/;
+		var checkNum = /^01(?:0|1|[6-9])[.-]?(\\d{3}|\\d{4})[.-]?(\\d{4})$/;
+		 var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		 
+		 
 		if (!document.newMember.id.value) {
 			alert("아이디를 입력하세요.");
 			return false;
@@ -19,8 +26,86 @@
 			alert("비밀번호를 동일하게 입력하세요.");
 			return false;
 		}
+
 	}
+</script> -->
+
+<script type="text/javascript">
+   function checkForm() {
+      //아이디 적합한지 검사할 정규식 
+      var checkId = /^[a-z0-9]{6,20}$/;
+      //패스워드가 적합한지 검사할 정규식
+      var checkPw = /^(?=.*[a-zA-Z])(?=.*[!@#$%&^*=*+=-])(?=.*[0-9]).{6,20}$/;
+      //숫자만 입력하는 정규식
+       var checkNum = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+       //이메일이 적합한지 검사할 정규식x
+       var checkEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      
+       
+       
+      if (!document.newMember.id.value) {
+         alert("아이디를 입력하세요.");
+         newMember.id.focus();
+         return false;
+      }
+      
+      if (!check(checkId,newMember.id,"아이디는 6~20자의 영문 대소문자와 숫자로만 입력")) {
+         return false;
+      }
+
+      if (!document.newMember.password.value) {
+         alert("비밀번호를 입력하세요.");
+         newMember.password.focus();
+         return false;
+      }
+
+      if (document.newMember.password.value != document.newMember.password_confirm.value) {
+         alert("비밀번호를 동일하게 입력하세요.");
+         newMember.password_confirm.focus();
+         return false;
+      }
+      
+      if (!check(checkPw,newMember.password,"패스워드는 6~20자의 영문 대소문자와 숫자로만 입력")) {
+         return false;
+      }
+      
+      if(!document.newMember.name.value){
+    	  alert("이름을 입력해주세요.");
+    	  newMember.name.focus();
+    	  return false;
+      }
+      
+      if(!document.newMember.mail1.value){
+    	  alert("이메일을 입력해주세요.");
+    	  newMember.mail1.focus();
+    	  return false;
+    	  
+      }
+      
+      if (!check(checkNum,newMember.phone,"숫자만 입력해 주세요")) {
+         return false;
+      }
+      
+      if (!document.newMember.address.value) {
+         alert("주소를 입력하세요");
+         newMember.address.focus();
+         return false;
+      }
+   }
+   
+   function check(check, what, message) {
+       if(check.test(what.value)) {
+          return true;
+       }
+       alert(message);
+       what.value="";
+       what.focus();
+       //return false;
+    } 
 </script>
+
+
+
 <title>회원 가입</title>
 </head>
 <body>
