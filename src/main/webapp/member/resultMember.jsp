@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
@@ -22,12 +23,17 @@
 					out.println(" <h2 class='alert alert-danger'>회원가입을 축하드립니다.</h2>");
 				else if (msg.equals("2")) {
 					String loginId = (String) session.getAttribute("sessionId");
+				if(loginId.equals("admin")){
+					out.println(" <h2 class='alert alert-danger'> 관리자님 환영합니다</h2>");
+				}
+				else{
 					out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
+				}
 				}				
 			} else {
 				out.println("<h2 class='alert alert-danger'>회원정보가 삭제되었습니다.</h2>");
 			}
 		%>
-	</div>	
+	</div>
 </body>
 </html>
